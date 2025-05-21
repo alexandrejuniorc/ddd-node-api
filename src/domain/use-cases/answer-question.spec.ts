@@ -1,9 +1,17 @@
 import { expect, test } from "vitest";
 import { AnswerQuestionUseCase } from "./answer-question";
+import { AnswersRepository } from "../repositories/answers-repository";
+import { Answer } from "../entities/answer";
+
+const fakeAnswersRepository: AnswersRepository = {
+  create: async function (answer: Answer) {
+    return;
+  },
+};
 
 test("create an answer", async () => {
-  const answerQuestion = new AnswerQuestionUseCase();
-  const answer = answerQuestion.execute({
+  const answerQuestion = new AnswerQuestionUseCase(fakeAnswersRepository);
+  const answer = await answerQuestion.execute({
     instructorId: "instructor-1",
     questionId: "question-1",
     content: "This is an answer",
