@@ -8,6 +8,12 @@
     "module": "nodenext",
     "target": "es2022",
 
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["vitest/globals"],
+
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
