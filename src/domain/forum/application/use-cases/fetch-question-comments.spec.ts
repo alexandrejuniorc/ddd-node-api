@@ -6,14 +6,14 @@ import { makeQuestionComment } from 'test/factories/make-question-comment'
 let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
 let sut: FetchQuestionCommentsUseCase // SUT -> System Under Test
 
-describe('Fetch Question Answers', () => {
+describe('Fetch Question Comments', () => {
   beforeEach(() => {
     inMemoryQuestionCommentsRepository =
       new InMemoryQuestionCommentsRepository()
     sut = new FetchQuestionCommentsUseCase(inMemoryQuestionCommentsRepository)
   })
 
-  it('should be able to fetch recent questions', async () => {
+  it('should be able to fetch question comments', async () => {
     await inMemoryQuestionCommentsRepository.create(
       makeQuestionComment({ questionId: new UniqueEntityID('question-1') }),
     )
@@ -32,7 +32,7 @@ describe('Fetch Question Answers', () => {
     expect(questionComments).toHaveLength(3)
   })
 
-  it('should be able to fetch paginated question answers', async () => {
+  it('should be able to fetch paginated question comments', async () => {
     for (let i = 1; i <= 22; i++) {
       await inMemoryQuestionCommentsRepository.create(
         makeQuestionComment({
