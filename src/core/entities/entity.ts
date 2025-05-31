@@ -4,12 +4,12 @@ export abstract class Entity<T> {
   private _id: UniqueEntityID
   protected props: T
 
-  protected constructor(props: T, id?: UniqueEntityID) {
-    this._id = id ?? new UniqueEntityID(id)
-    this.props = props
+  get id() {
+    return this._id
   }
 
-  get id(): string {
-    return this._id.toString()
+  protected constructor(props: T, id?: UniqueEntityID) {
+    this.props = props
+    this._id = id ?? new UniqueEntityID()
   }
 }
